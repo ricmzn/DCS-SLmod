@@ -3074,20 +3074,19 @@ end]]
 			end
 			
 			
-			--[[If any entries in hitObjs are no longer alive, then it counts it as a death, and removes the entry of hitObjs.
-			The removal of that entry in hitObjs prevents a potential future "dead" event from counting as an additional death.
-			Remember- hitObjs only includes humans that were hit, so this function won't erroneously count crashes for no reason.
-			
+			--[[If any entries in hitObjs are no longer alive but haven't been handled by death events, remove the entry of hitObjs.
+			This prevents an unit being deleted by scripts from being counted as killed, even if it was damaged earlier.
+			Remember - hitObjs only includes units that were hit, so this function won't erroneously count crashes for no reason.
+
 			ALSO, clear the landedUnits table entry for this unit if it is not alive.]]
 			
 			-- NOW, check to see if any hitObjs are non-existant.
 			for unitName, hits in pairs(hitObjs) do
 				if not unitIsAlive(unitName) then
 					----slmod.info('SlmodStats- hit client unitName: ' .. unitName .. ', hits[#hits]: ' .. slmod.oneLineSerialize(hits[#hits]) .. '  no longer exists, running death logic.')
-					
+
 					suppressDeath[unitName] = true
-					runDeathLogic(unitName)
-					slmod.scheduleFunction(unsuppressDeath, {unitName}, DCS.getModelTime() + 10)-- allow this unit to die again in 10 seconds.
+					slmod.scheduleFunction(unsuppressDeath, {unitName}, DCS.getModelTime() + 10) -- allow this unit to die again in 10 seconds.
 					landedUnits[unitName] = nil  -- may or may not be nil.
 				end
 			end	
