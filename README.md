@@ -21,7 +21,7 @@ Note that the source file for the pdf is not available, thus it will not be upda
 
 =======
 
-Donate. If you want to. Likely will go into the "Better than a X52 HOTAS Fund". Or also Beer money. 
+If you want to donate do Grimes (mrSkortch, SLmod creator), feel free to use the link below:
 
 [![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X8CHU2343FRKA&currency_code=USD&source=url)
 
