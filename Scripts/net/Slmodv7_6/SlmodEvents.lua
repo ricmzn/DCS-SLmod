@@ -838,7 +838,7 @@ do
     
         local lgroup
         local newObj = {}
-        if lunit:getCategory() == 3 or lunit:getCategory() == 6 then
+        if Object.getCategory(lunit) == 3 or Object.getCategory(lunit) == 6 then
             lgroup = StaticObject.getByName(lunit:getName())
         else
             lgroup  = lunit:getGroup()
@@ -879,7 +879,7 @@ do
         newObj.countryName = string.lower(country.name[tonumber(lunit:getCountry())])
         newObj.countryId= (lunit:getCountry())
         --env.info('c5')
-        if tonumber(lunit:getCategory()) == 3 or tonumber(lunit:getCategory()) == 6 then
+        if tonumber(Object.getCategory(lunit)) == 3 or tonumber(Object.getCategory(lunit)) == 6 then
             newObj.category  = 'static'
         else
             local lCat = tonumber(lgroup:getCategory())
@@ -951,8 +951,8 @@ do
         end
         
         if event.target and event.id ~= 6 and event.id ~= 33 then
-            if event.target:getCategory() then
-                newEvent.targetCategory = event.target:getCategory()
+            if Object.getCategory(event.target) then
+                newEvent.targetCategory = Object.getCategory(event.target)
                 if newEvent.targetCategory ~= 2 then -- cant be a weapon because getName fails on this
                     newEvent.target = event.target:getName()
                     if newEvent.targetCategory ~= 5  then
